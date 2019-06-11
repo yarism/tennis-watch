@@ -28,7 +28,7 @@ class NetworkManager {
         }
     }
 
-    func postAction(homeOpponent: Int, awayOpponent: Int) {
+    func postAction(homeOpponent: Int, awayOpponent: Int, matchId: String) {
         print(homeOpponent)
         print(awayOpponent)
         let json: [String: Any] = ["homeOpponent": homeOpponent, "awayOpponent": awayOpponent, "status": "RUNNING"]
@@ -36,7 +36,7 @@ class NetworkManager {
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
         // create post request
-        let url = URL(string: "https://dev-smash.matchi.se/matches/hashid/Mk3")!
+        let url = URL(string: "https://dev-smash.matchi.se/matches/hashid/\(matchId)")!
         var request = URLRequest(url: url)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
@@ -64,7 +64,7 @@ struct ContentView : View {
     
     @State var homeScore: Int = 0
     @State var awayScore: Int = 0
-    @State var name: String = "Mk3"
+    @State var matchId: String = "Mk3"
     
     init() {
         NetworkManager().test()
@@ -74,11 +74,11 @@ struct ContentView : View {
         VStack {
             Text("\(homeScore) - \(awayScore)")
             HStack {
-                Button(action: {self.homeScore = self.homeScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore)}) {
+                Button(action: {self.homeScore = self.homeScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     Text("Hemma")
                         .color(.green)
                 }
-                Button(action: {self.awayScore = self.awayScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore)}) {
+                Button(action: {self.awayScore = self.awayScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     Text("Borta")
                         .color(.blue)
                 }
@@ -86,7 +86,7 @@ struct ContentView : View {
             Button(action: {self.homeScore = 0;self.awayScore = 0}) {
                 Text("Starta om")
             }
-            TextField($name)
+            TextField($matchId)
         }
     }
 }
