@@ -16,8 +16,10 @@
 		2391DFF822A9983000E281E8 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391DFF722A9983000E281E8 /* ExtensionDelegate.swift */; };
 		2391DFFA22A9983000E281E8 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391DFF922A9983000E281E8 /* NotificationController.swift */; };
 		2391DFFC22A9983000E281E8 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391DFFB22A9983000E281E8 /* NotificationView.swift */; };
-		2391DFFE22A9983000E281E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2391DFFD22A9983000E281E8 /* Assets.xcassets */; };
 		2391E00122A9983000E281E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2391E00022A9983000E281E8 /* Preview Assets.xcassets */; };
+		2391E01222ABB92B00E281E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2391E01122ABB92A00E281E8 /* Assets.xcassets */; };
+		2391E01D22ABE58E00E281E8 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2391E01C22ABE58E00E281E8 /* Service.swift */; };
+		23DF21C022AD616C00462DFC /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DF21BF22AD616C00462DFC /* Counter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,10 +76,12 @@
 		2391DFF722A9983000E281E8 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		2391DFF922A9983000E281E8 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		2391DFFB22A9983000E281E8 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		2391DFFD22A9983000E281E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2391E00022A9983000E281E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2391E00222A9983000E281E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2391E00322A9983000E281E8 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		2391E01122ABB92A00E281E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		2391E01C22ABE58E00E281E8 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		23DF21BF22AD616C00462DFC /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +132,12 @@
 				2391DFF722A9983000E281E8 /* ExtensionDelegate.swift */,
 				2391DFF922A9983000E281E8 /* NotificationController.swift */,
 				2391DFFB22A9983000E281E8 /* NotificationView.swift */,
-				2391DFFD22A9983000E281E8 /* Assets.xcassets */,
+				2391E01122ABB92A00E281E8 /* Assets.xcassets */,
 				2391E00222A9983000E281E8 /* Info.plist */,
 				2391E00322A9983000E281E8 /* PushNotificationPayload.apns */,
 				2391DFFF22A9983000E281E8 /* Preview Content */,
+				2391E01C22ABE58E00E281E8 /* Service.swift */,
+				23DF21BF22AD616C00462DFC /* Counter.swift */,
 			);
 			path = "MATCHi WatchKit Extension";
 			sourceTree = "<group>";
@@ -260,8 +266,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2391E01222ABB92B00E281E8 /* Assets.xcassets in Resources */,
 				2391E00122A9983000E281E8 /* Preview Assets.xcassets in Resources */,
-				2391DFFE22A9983000E281E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,8 @@
 				2391DFFA22A9983000E281E8 /* NotificationController.swift in Sources */,
 				2391DFF822A9983000E281E8 /* ExtensionDelegate.swift in Sources */,
 				2391DFFC22A9983000E281E8 /* NotificationView.swift in Sources */,
+				2391E01D22ABE58E00E281E8 /* Service.swift in Sources */,
+				23DF21C022AD616C00462DFC /* Counter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
