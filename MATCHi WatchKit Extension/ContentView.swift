@@ -72,21 +72,42 @@ struct ContentView : View {
     
     var body: some View {
         VStack {
-            Text("\(homeScore) - \(awayScore)")
             HStack {
                 Button(action: {self.homeScore = self.homeScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
-                    Text("Hemma")
-                        .color(.green)
+                    HStack {
+                        Text("ARO/JOH")
+                        Spacer()
+                        Text("\(homeScore)")
+                            .bold()
+                            .font(.system(size: 30))
+                    }
                 }
+                .background(LinearGradient(gradient: Gradient(colors: [Color.init(red: 0.42, green: 0.79, blue: 0.27), .green]), startPoint: .top, endPoint: .bottom), cornerRadius: 20)
+            }
+            HStack {
                 Button(action: {self.awayScore = self.awayScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
-                    Text("Borta")
-                        .color(.blue)
+                    HStack {
+                        Text("EKM/LIN")
+                        Spacer()
+                        Text("\(awayScore)")
+                            .bold()
+                            .font(.system(size: 30))
+                    }
+                }
+                .background(LinearGradient(gradient: Gradient(colors: [Color.init(red: 0.34, green: 0.66, blue: 0.84), Color.init(red: 0.11, green: 0.57, blue: 0.87)]), startPoint: .top, endPoint: .bottom), cornerRadius: 20)
+            }
+            HStack {
+                Button(action: {self.homeScore = self.homeScore - 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                    Text("-")
+                        .color(.green)
+
+                }
+                TextField($matchId)
+                Button(action: {self.awayScore = self.awayScore - 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                    Text("-")
+                        .color(Color.init(red: 0.11, green: 0.57, blue: 0.87))
                 }
             }
-            Button(action: {self.homeScore = 0;self.awayScore = 0}) {
-                Text("Starta om")
-            }
-            TextField($matchId)
         }
     }
 }
