@@ -12,7 +12,7 @@ class NetworkManager {
     
     func test() {
         
-        if let url = URL(string: "https://dev-smash.matchi.se/matches/hashid/Mk3") {
+        if let url = URL(string: "https://dev-smash.matchi.se/matches/hashid/6Xo") {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 print("\n\nDATA: \(data)")
                 print("\n\nRESPONSE: \(response)")
@@ -62,18 +62,43 @@ class NetworkManager {
 
 struct ContentView : View {
     
+    var maxScore = 32
     @State var homeScore: Int = 0
     @State var awayScore: Int = 0
-    @State var matchId: String = "Mk3"
+    @State var totalScore: Int = 0
+    @State var matchId: String = "6Xo"
     
     init() {
         NetworkManager().test()
     }
     
+    func scorePoint(team: String) {
+        if (self.totalScore < self.maxScore) {
+            if (team == "home") {
+                self.homeScore = self.homeScore + 1
+            }
+            else if (team == "away") {
+                self.awayScore = self.awayScore + 1
+            }
+            self.totalScore = self.totalScore + 1
+        }
+     }
+    
+    func removePoint(team: String) {
+        if (team == "home" && self.homeScore > 0) {
+            self.homeScore = self.homeScore - 1
+            self.totalScore = self.totalScore - 1
+        }
+        else if (team == "away" && self.awayScore > 0) {
+            self.awayScore = self.awayScore - 1
+            self.totalScore = self.totalScore - 1
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack {
-                Button(action: {self.homeScore = self.homeScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                Button(action: {self.scorePoint(team: "home");NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     HStack {
                         Text("ARO/JOH")
                         Spacer()
@@ -85,7 +110,7 @@ struct ContentView : View {
                 .background(LinearGradient(gradient: Gradient(colors: [Color.init(red: 0.42, green: 0.79, blue: 0.27), .green]), startPoint: .top, endPoint: .bottom), cornerRadius: 20)
             }
             HStack {
-                Button(action: {self.awayScore = self.awayScore + 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                Button(action: {self.scorePoint(team: "away");NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     HStack {
                         Text("EKM/LIN")
                         Spacer()
@@ -97,13 +122,13 @@ struct ContentView : View {
                 .background(LinearGradient(gradient: Gradient(colors: [Color.init(red: 0.34, green: 0.66, blue: 0.84), Color.init(red: 0.11, green: 0.57, blue: 0.87)]), startPoint: .top, endPoint: .bottom), cornerRadius: 20)
             }
             HStack {
-                Button(action: {self.homeScore = self.homeScore - 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                Button(action: {self.removePoint(team: "home");NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     Text("-")
                         .color(.green)
 
                 }
                 TextField($matchId)
-                Button(action: {self.awayScore = self.awayScore - 1;NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
+                Button(action: {self.removePoint(team: "away");NetworkManager().postAction(homeOpponent: self.homeScore, awayOpponent: self.awayScore, matchId: self.matchId)}) {
                     Text("-")
                         .color(Color.init(red: 0.11, green: 0.57, blue: 0.87))
                 }
